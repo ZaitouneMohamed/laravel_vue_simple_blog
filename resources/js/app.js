@@ -1,10 +1,8 @@
-require('./bootstrap')
-
 import { createApp } from 'vue'
-import Welcome from './components/index.vue'
+import Home from './components/landing/index.vue'
 
 const app = createApp({})
 
-app.component('welcome', Welcome)
+app.component('welcome', Home)
 
 app.mount('#app')
