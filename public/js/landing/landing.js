@@ -17421,10 +17421,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "landing page", -1 /* HOISTED */);
-var _hoisted_2 = [_hoisted_1];
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", null, "Go to admin", -1 /* HOISTED */);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "landing page", -1 /* HOISTED */);
+
 function render(_ctx, _cache) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, _hoisted_2);
+  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: "/admin"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_1];
+    }),
+    _: 1 /* STABLE */
+  }), _hoisted_2]);
 }
 
 /***/ }),
@@ -17790,17 +17799,22 @@ function compileToFunction(template, options) {
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!*************************************!*\
-  !*** ./resources/js/landing/app.js ***!
-  \*************************************/
+/*!*****************************************!*\
+  !*** ./resources/js/landing/landing.js ***!
+  \*****************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _components_index_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/index.vue */ "./resources/js/landing/components/index.vue");
 
+ // Adjust the path to your main landing component
 
-var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({});
-app.component('Home', _components_index_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
-app.mount('#app');
+var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_components_index_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+// Optionally, you can use Vue Router for landing routes here
+// import router from './router';
+// app.use(router);
+
+app.mount('#landing'); // Mount the app to a specific element in your landing.blade.php
 })();
 
 /******/ })()

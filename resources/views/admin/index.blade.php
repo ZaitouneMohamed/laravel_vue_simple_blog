@@ -10,12 +10,10 @@
 
 <body>
 
-    <div id="app">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center py-4 sm:pt-0">
-            <Home />
-        </div>
+    <div id="admin">
+        <AdminApp />
     </div>
-    <script src="{{ mix('js/admin/app.js') }}"></script>
+    <script src="{{ mix('js/admin/admin.js') }}"></script>
 </body>
 
 </html>
