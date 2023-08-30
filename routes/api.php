@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\CategorieController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource("categorie", CategorieController::class);
+Route::apiResource("categories", CategorieController::class);
+Route::apiResource("posts", PostController::class);
+
+Route::get('search/{search}', [HomeController::class, "search"]);
 
 Route::controller(AuthController::class)->group(function () {
     Route::middleware("guest")->group(function () {
