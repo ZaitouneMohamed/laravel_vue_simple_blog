@@ -15,9 +15,11 @@
 
 <body>
 
-    @yield("content")
+    <div id="landing">
+        {{-- @yield("content") --}}
+    </div>
     <!-- Bootstrap core JS-->
-    <script src="{{ mix('js/landing/app.js') }}"></script>
+    <script src="{{ mix('js/landing/landing.js') }}"></script>
     <!-- Core theme JS-->
 </body>
 

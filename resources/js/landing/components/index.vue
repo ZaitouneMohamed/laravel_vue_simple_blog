@@ -1,11 +1,18 @@
+<!-- landing/components/index.vue -->
 <template>
     <div>
-        <router-link to="/admin">
-            <button>Go to admin</button>
-        </router-link>
-        <h1>landing page</h1>
+        <NavigationBar />
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
+import NavigationBar from "./navbar.vue"; // Adjust the import path as needed
+
+export default {
+    components: {
+        NavigationBar
+    },
+    // ...
+};
 </script>

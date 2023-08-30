@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/admin{any}', function () {
+    return view('admin.index');
+})->where('any', '.*');
 
 Route::get('/{any}', function () {
     return view('landing.index');
 })->where('any', '.*');
 
-Route::get('/admin/{any}', function () {
-    return view('admin.index');
-})->where('any', '.*');
