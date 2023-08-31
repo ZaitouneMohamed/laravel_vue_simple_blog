@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Comments;
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -49,17 +51,17 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::with('categorie')->find($id);
+        // $comments = $post->Comments;
+        $comments = Comment::where('post_id', $id)->with('User')->latest()->get();
         return response()->json([
             'id' => $post->id,
             'title' => $post->title,
             'image' => $post->image,
             'body' => $post->body,
-            // 'created_at' => $post->created_at->diffForHumans(),
             'category' => $post->Categorie->name,
-            // 'comments_count' => $post->comments->count(),
-            // 'comments' => $this->commentsArray($post->comments)
+            'created_at' => $post->created_at,
+            'comments' => $comments
         ]);
-        // return response()->json($post);
     }
 
     /**
