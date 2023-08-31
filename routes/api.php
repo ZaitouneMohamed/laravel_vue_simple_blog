@@ -27,6 +27,8 @@ Route::apiResource("posts", PostController::class);
 
 Route::get('search/{search}', [HomeController::class, "search"]);
 
+Route::post("AddComment/{id}",[HomeController::class,"CreateComment"]);
+
 Route::controller(AuthController::class)->group(function () {
     Route::middleware("guest")->group(function () {
         Route::post("register", "register");
