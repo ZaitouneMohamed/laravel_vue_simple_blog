@@ -19988,7 +19988,7 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/login', this.user).then(function (res) {
         if (res.data.token) {
           _this.message = res.data.message;
-          localStorage.setItem('token', JSON.stringify(res.data.token)), _this.user = {
+          localStorage.setItem('token', JSON.stringify(res.data.token)), localStorage.setItem('role', JSON.stringify(res.data.role)), _this.user = {
             email: '',
             password: ''
           }, _this.$emit('logged');
