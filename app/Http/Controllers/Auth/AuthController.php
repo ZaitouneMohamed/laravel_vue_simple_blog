@@ -48,7 +48,8 @@ class AuthController extends Controller
 
     public function profile()
     {
-        return new UserResource(auth()->user());
+        // return new UserResource(auth()->user());
+        return response()->json(auth()->user());
     }
     public function logout()
     {
