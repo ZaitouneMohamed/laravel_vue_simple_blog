@@ -1,7 +1,6 @@
 import { createApp } from 'vue';
-import router from '../admin/router';
+import router from '../router';
 import AdminApp from './components/index.vue';
-import NavigationBar from "./components/NavBar";
 
 const app = createApp(AdminApp);
 
