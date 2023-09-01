@@ -15,10 +15,13 @@ class HomeController extends Controller
         }
     public function CreateComment(Request $request, $id)
     {
+        $this->validate($request,[
+            "body" => "required|max:254"
+        ]);
         Comment::create([
             "post_id" => $id,
             "user_id" => 2,
-            'body' => "dfghjiopojhg"
+            'body' => $request->body
         ]);
         return response()->json(['message' => 'Comment created successfully']);
     }
