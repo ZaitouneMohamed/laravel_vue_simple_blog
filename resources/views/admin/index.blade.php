@@ -1,6 +1,5 @@
-@extends("admin.layouts.master")
+@extends('admin.layouts.master')
 
-@section("content")
-admin home page
-<AdminApp />
+@section('content')
+    <AdminApp />
 @endsection
