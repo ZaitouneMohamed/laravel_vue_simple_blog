@@ -3,9 +3,12 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "./landing/components/Home/Home.vue";
 import Post from "./landing/components/post/Show.vue";
 import Profile from "./landing/components/auth/profile/Profile.vue";
+import AdminHome from "./admin/components/Home/Home.vue";
+import NotFound from "./errors/404.vue";
+import Posts from "./admin/components/posts/Index.vue";
 
 const routes = [
-    { path: "/", component: Home, name: "home" },
+    { path: "/", component: Home },
     { path: "/post/:id", component: Post },
     {
         path: "/Profile",
@@ -18,6 +21,36 @@ const routes = [
                 next("/");
             }
         },
+    },
+    {
+        path: "/admin",
+        component: AdminHome,
+        beforeEnter: (to, from, next) => {
+            const token = localStorage.getItem("token");
+            const role = localStorage.getItem("role");
+            if (token && role === "admin") {
+                next();
+            } else {
+                next({ path: "/" });
+            }
+        },
+    },
+    {
+        path: "/admin/posts",
+        component: Posts,
+        beforeEnter: (to, from, next) => {
+            const token = localStorage.getItem("token");
+            const role = localStorage.getItem("role");
+            if (token && role === "admin") {
+                next();
+            } else {
+                next("/");
+            }
+        },
+    },
+    {
+        path: "/:catchAll(.*)",
+        component: NotFound,
     },
 ];
 
