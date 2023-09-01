@@ -16,9 +16,12 @@ export default {
             comment: { body: "" },
         }
     },
+    props: {
+        post_id: Number
+    },
     methods: {
         CreateComment() {
-            axios.post('/api/AddComment/' + 1, this.comment)
+            axios.post('/api/AddComment/' + this.post_id, this.comment)
                 .then((response) => {
                     this.comment = { body: "" },
                         this.$emit('commentAdded')

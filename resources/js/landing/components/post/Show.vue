@@ -21,7 +21,7 @@
                     </section>
                 </article>
                 <!-- Comments section-->
-                <CommentsList :comments=comments />
+                <CommentsList :comments=comments :post_id=post.id @commentAdded="refresh" />
             </div>
             <div class="col-lg-4">
                 <!-- Search widget-->
@@ -69,6 +69,9 @@ export default {
                     this.post = response.data,
                         this.comments = response.data.comments
                 });
+        },
+        refresh() {
+            this.GetPost()
         }
     }
 };

@@ -5,7 +5,7 @@
             <h4 class="text text-center">Comment List</h4>
             <div class="card-body">
                 <!-- Comment form-->
-                <addcomment @commentAdded="refreshList" />
+                <addcomment @commentAdded="refreshList" :post_id=post_id />
                 <!-- Comment with nested comments-->
                 <div class="d-flex mb-4" v-for="comment in comments">
                     <!-- Parent comment-->
@@ -29,7 +29,8 @@ export default {
         'addcomment': AddComment
     },
     props: {
-        comments: Array
+        comments: Array,
+        post_id: Number
     },
     data() {
         return {
@@ -38,8 +39,7 @@ export default {
     },
     methods: {
         refreshList() {
-            console.log('dfghjk')
-            // this.commentsList = this.comments
+            this.$emit('commentAdded')
         },
     }
 }
