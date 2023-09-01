@@ -30,9 +30,11 @@ class AuthController extends Controller
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken("auth-token");
+                $role = $user->getRoleNames()->first();
                 return response()->json([
                     "message" => "user exist",
-                    "token" => $token->plainTextToken
+                    "token" => $token->plainTextToken,
+                    "role" => $role
                 ]);
             } else {
                 return response()->json([
