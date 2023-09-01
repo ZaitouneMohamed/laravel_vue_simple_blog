@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -20,7 +21,7 @@ class HomeController extends Controller
         ]);
         Comment::create([
             "post_id" => $id,
-            "user_id" => 2,
+            "user_id" => auth()->user()->id,
             'body' => $request->body
         ]);
         return response()->json(['message' => 'Comment created successfully']);
