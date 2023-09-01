@@ -20035,6 +20035,9 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/posts/' + this.post_id).then(function (response) {
         _this.post = response.data, _this.comments = response.data.comments;
       });
+    },
+    refresh: function refresh() {
+      this.GetPost();
     }
   }
 });
@@ -20063,10 +20066,13 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
+  props: {
+    post_id: Number
+  },
   methods: {
     CreateComment: function CreateComment() {
       var _this = this;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/AddComment/' + 1, this.comment).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/AddComment/' + this.post_id, this.comment).then(function (response) {
         _this.comment = {
           body: ""
         }, _this.$emit('commentAdded');
@@ -20097,7 +20103,8 @@ __webpack_require__.r(__webpack_exports__);
     'addcomment': _AddComment_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
-    comments: Array
+    comments: Array,
+    post_id: Number
   },
   data: function data() {
     return {
@@ -20106,8 +20113,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     refreshList: function refreshList() {
-      console.log('dfghjk');
-      // this.commentsList = this.comments
+      this.$emit('commentAdded');
     }
   }
 });
@@ -20463,8 +20469,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     src: $data.post.image,
     alt: "..."
   }, null, 8 /* PROPS */, _hoisted_9)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Post content"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.post.body), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Comments section"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CommentsList, {
-    comments: $data.comments
-  }, null, 8 /* PROPS */, ["comments"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Search widget"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Search), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Categories widget"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Categorie), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Side widget"), _hoisted_13])])]);
+    comments: $data.comments,
+    post_id: $data.post.id,
+    onCommentAdded: $options.refresh
+  }, null, 8 /* PROPS */, ["comments", "post_id", "onCommentAdded"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Search widget"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Search), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Categories widget"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Categorie), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Side widget"), _hoisted_13])])]);
 }
 
 /***/ }),
@@ -20548,8 +20556,9 @@ var _hoisted_8 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_addcomment = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("addcomment");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Comments section"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Comment form"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_addcomment, {
-    onCommentAdded: $options.refreshList
-  }, null, 8 /* PROPS */, ["onCommentAdded"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Comment with nested comments"), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.comments, function (comment) {
+    onCommentAdded: $options.refreshList,
+    post_id: $props.post_id
+  }, null, 8 /* PROPS */, ["onCommentAdded", "post_id"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Comment with nested comments"), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.comments, function (comment) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Parent comment"), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(comment.user.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(comment.body), 1 /* TEXT */)])]);
   }), 256 /* UNKEYED_FRAGMENT */))])])])], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */);
 }
