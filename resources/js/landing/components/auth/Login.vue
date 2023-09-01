@@ -48,6 +48,7 @@ export default {
                     if (res.data.token) {
                         this.message = res.data.message;
                         localStorage.setItem('token', JSON.stringify(res.data.token)),
+                        localStorage.setItem('role', JSON.stringify(res.data.role)),
                             this.user = { email: '', password: '' },
                             this.$emit('logged')
                     } else {
