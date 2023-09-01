@@ -21,7 +21,15 @@
                     </section>
                 </article>
                 <!-- Comments section-->
-                <CommentsList :comments=comments :post_id=post.id @commentAdded="refresh" />
+                <CommentsList :comments=comments :post_id=post.id @commentAdded="refresh" v-if="logged" />
+                <div v-else>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Login">
+                        Login
+                    </button>
+                    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#register">
+                        Register
+                    </button> -->
+                </div>
             </div>
             <div class="col-lg-4">
                 <!-- Search widget-->
@@ -37,18 +45,24 @@
             </div>
         </div>
     </div>
+    <Login @logged="login_success" />
+    <!-- <Register/> -->
 </template>
 
 <script>
 import axios from "axios"
 import Categorie from "../Home/Categorie.vue"
 import Search from "../Home/Search.vue"
+import Login from "../auth/Login"
+import Register from "../auth/Register"
 import CommentsList from "./comments/CommentsList.vue"
 
 export default {
     components: {
         Categorie,
         Search,
+        Login,
+        Register,
         CommentsList
     },
     data() {
@@ -72,6 +86,9 @@ export default {
         },
         refresh() {
             this.GetPost()
+        },
+        login_success() {
+            this.logged = true
         }
     }
 };

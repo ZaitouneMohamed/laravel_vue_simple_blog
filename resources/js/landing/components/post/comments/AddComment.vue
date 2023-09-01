@@ -1,4 +1,7 @@
 <template>
+    <div class="alert alert-success" v-if="message" role="alert">
+        {{ message }}
+    </div>
     <form class="mb-4">
         <textarea class="form-control" rows="3" v-model="comment.body"
             placeholder="Join the discussion and leave a comment!"></textarea>
@@ -14,17 +17,28 @@ export default {
     data() {
         return {
             comment: { body: "" },
+            message: "",
+            token: JSON.parse(localStorage.getItem('token')) || '',
         }
     },
     props: {
-        post_id: Number
+        post_id: Number,
+    },
+    mounted() {
+        console.log(this.token)
     },
     methods: {
         CreateComment() {
-            axios.post('/api/AddComment/' + this.post_id, this.comment)
+            const config = {
+                headers: {
+                    "Authorization": `Bearer ${this.token}`
+                },
+            };
+            axios.post('/api/AddComment/' + this.post_id, this.comment, config)
                 .then((response) => {
                     this.comment = { body: "" },
-                        this.$emit('commentAdded')
+                        this.message = response.data.message
+                    this.$emit('commentAdded')
                 })
                 .catch(err => console.log(err))
 
