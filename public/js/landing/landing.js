@@ -21050,30 +21050,10 @@ var routes = [{
   }
 }, {
   path: "/admin",
-  component: _admin_components_Home_Home_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    var token = localStorage.getItem("token");
-    var role = localStorage.getItem("role");
-    if (token && role === "admin") {
-      next();
-    } else {
-      next({
-        path: "/"
-      });
-    }
-  }
+  component: _admin_components_Home_Home_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
   path: "/admin/posts",
-  component: _admin_components_posts_Index_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    var token = localStorage.getItem("token");
-    var role = localStorage.getItem("role");
-    if (token && role === "admin") {
-      next();
-    } else {
-      next("/");
-    }
-  }
+  component: _admin_components_posts_Index_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   path: "/:catchAll(.*)",
   component: _errors_404_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
