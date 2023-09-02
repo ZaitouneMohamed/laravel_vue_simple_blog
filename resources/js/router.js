@@ -25,28 +25,10 @@ const routes = [
     {
         path: "/admin",
         component: AdminHome,
-        beforeEnter: (to, from, next) => {
-            const token = localStorage.getItem("token");
-            const role = localStorage.getItem("role");
-            if (token && role === "admin") {
-                next();
-            } else {
-                next({ path: "/" });
-            }
-        },
     },
     {
         path: "/admin/posts",
         component: Posts,
-        beforeEnter: (to, from, next) => {
-            const token = localStorage.getItem("token");
-            const role = localStorage.getItem("role");
-            if (token && role === "admin") {
-                next();
-            } else {
-                next("/");
-            }
-        },
     },
     {
         path: "/:catchAll(.*)",
