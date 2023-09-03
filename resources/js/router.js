@@ -14,7 +14,7 @@ const routes = [
         path: "/Profile",
         component: Profile,
         beforeEnter: (to, from, next) => {
-            const variableValue = localStorage.getItem("token"); // Replace with your variable value
+            const variableValue = localStorage.getItem("token");
             if (variableValue) {
                 next();
             } else {
