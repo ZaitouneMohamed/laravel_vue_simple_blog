@@ -19922,18 +19922,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      posts: []
+      posts: [],
+      pagination: {}
     };
   },
   mounted: function mounted() {
-    this.GetPosts();
+    this.getPosts("/api/posts");
   },
   methods: {
-    GetPosts: function GetPosts() {
+    getPosts: function getPosts(url) {
       var _this = this;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/posts').then(function (response) {
-        return _this.posts = response.data;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(url).then(function (response) {
+        _this.posts = response.data.data;
+        _this.pagination = response.data;
       });
+    },
+    truncateText: function truncateText(text, maxLength) {
+      if (text && text.length > maxLength) {
+        return text.slice(0, maxLength) + "...";
+      }
+      return text;
     }
   }
 });
@@ -20465,11 +20473,23 @@ var _hoisted_8 = {
 var _hoisted_9 = {
   "class": "card-title h4"
 };
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_10 = {
   "class": "card-text"
-}, "Lorem consectetur adipisicing elit. Reiciendis aliquid atque, nulla.", -1 /* HOISTED */);
+};
 var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Read more →");
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<nav aria-label=\"Pagination\"><hr class=\"my-0\"><ul class=\"pagination justify-content-center my-4\"><li class=\"page-item disabled\"><a class=\"page-link\" href=\"#\" tabindex=\"-1\" aria-disabled=\"true\">Newer</a></li><li class=\"page-item active\" aria-current=\"page\"><a class=\"page-link\" href=\"#!\">1</a></li><li class=\"page-item\"><a class=\"page-link\" href=\"#!\">2</a></li><li class=\"page-item\"><a class=\"page-link\" href=\"#!\">3</a></li><li class=\"page-item disabled\"><a class=\"page-link\" href=\"#!\">...</a></li><li class=\"page-item\"><a class=\"page-link\" href=\"#!\">15</a></li><li class=\"page-item\"><a class=\"page-link\" href=\"#!\">Older</a></li></ul></nav>", 1);
+var _hoisted_12 = {
+  "class": "col-lg-8"
+};
+var _hoisted_13 = {
+  "aria-label": "Pagination"
+};
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
+  "class": "my-0"
+}, null, -1 /* HOISTED */);
+var _hoisted_15 = {
+  "class": "pagination justify-content-center my-4"
+};
+var _hoisted_16 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Nested row for non-featured blog posts"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.posts, function (post, index) {
@@ -20477,7 +20497,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "card-img-top",
       src: post.image,
       alt: "..."
-    }, null, 8 /* PROPS */, _hoisted_6)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.created_at), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.title), 1 /* TEXT */), _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    }, null, 8 /* PROPS */, _hoisted_6)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.created_at), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.title), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.truncateText(post.body, 30)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
       to: '/post/' + post.id,
       "class": "btn btn-primary"
     }, {
@@ -20486,7 +20506,42 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }),
       _: 2 /* DYNAMIC */
     }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"])])])]);
-  }), 256 /* UNKEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Pagination"), _hoisted_12]);
+  }), 256 /* UNKEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Pagination"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Nested row for non-featured blog posts "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ... (your existing code for displaying posts) ... "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Pagination "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Previous page link "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["page-item", {
+      disabled: !$data.pagination.prev_page_url
+    }])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    "class": "page-link",
+    onClick: _cache[0] || (_cache[0] = function ($event) {
+      return $options.getPosts($data.pagination.prev_page_url);
+    }),
+    href: "#",
+    tabindex: "-1",
+    "aria-disabled": "true"
+  }, " Newer ")], 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page links "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.pagination.last_page, function (page) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+      key: page,
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["page-item", {
+        active: page === $data.pagination.current_page
+      }])
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      "class": "page-link",
+      onClick: function onClick($event) {
+        return $options.getPosts($data.pagination.path + '?page=' + page);
+      },
+      href: "#"
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(page), 9 /* TEXT, PROPS */, _hoisted_16)], 2 /* CLASS */);
+  }), 128 /* KEYED_FRAGMENT */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Next page link "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["page-item", {
+      disabled: !$data.pagination.next_page_url
+    }])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    "class": "page-link",
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return $options.getPosts($data.pagination.next_page_url);
+    }),
+    href: "#"
+  }, " Older ")], 2 /* CLASS */)])])])]);
 }
 
 /***/ }),
@@ -21041,7 +21096,7 @@ var routes = [{
   path: "/Profile",
   component: _landing_components_auth_profile_Profile_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
   beforeEnter: function beforeEnter(to, from, next) {
-    var variableValue = localStorage.getItem("token"); // Replace with your variable value
+    var variableValue = localStorage.getItem("token");
     if (variableValue) {
       next();
     } else {
