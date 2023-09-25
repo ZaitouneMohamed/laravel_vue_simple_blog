@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/admin{any}', function () {
     return view('admin.index');
-})->where('any', '.*')->middleware([ "role:admin"]);
+})->where('any', '.*')->middleware("auth");
 
 Route::get('/{any}', function () {
     return view('landing.index');
